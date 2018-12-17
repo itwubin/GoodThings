@@ -1,0 +1,37 @@
+本地仓库上传到github仓库
+1.配置用户名和邮箱:
+  git config --global user.name "账户姓名(username)"
+  git config --global user.email "账户邮箱(email)"
+
+2.生产SSH密钥
+   ssh-keygen -t rsa -C "账户邮箱"  (按3个回车,密码为空)
+
+3.在C:\Users\Administrator\.ssh目录下找到id_rsa.pub并复制里面所有内容
+
+4.登录github账号,点击Your profile,然后点击Edit profile,选择SSH,新建一个SSH Key
+  Title名称随意,将C:\Users\Administrator\.ssh目录下id_rsa.pub复制的所有内容粘贴
+  到Key中，点击Add SSH Key，SSH密钥完成。
+
+5.远程提交：
+
+  a.先初始化:git init 
+
+  b.将本地仓库与远程仓库关联:
+    git remote add origin git@github.com:github的用户名/仓库名.git
+    这里，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。 
+  c.测试一下是否成功:
+    git remote
+
+  d.添加到缓冲区: git add .
+    
+    注意add 后面是空格，然后是 .
+
+    git add . : 监控工作区的状态树，使用它会把工作时的所有变化提交到暂存区，包括文件内容修改(modified)以及新文件(new)，但不包括被删除的文件。
+   
+   e.填写提交说明:
+
+     git commit -m "提交的说明信息"
+
+   f.提交:
+
+     git push -u origin master
